@@ -2,25 +2,27 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import RegisterScreen from './src/screens/RegisterScreen';
-import NewsListScreen from './src/screens/NewsListScreen';
-import NewsDetailScreen from './src/screens/NewsDetailScreen';
-import AddNewsScreen from './src/screens/AddNewsScreen';
+
+import { useFonts } from "expo-font";
+import AppLoading from 'expo-app-loading';
 
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({
+    "MontserratLightItalic": require("./assets/fonts/Montserrat-LightItalic.ttf"),
+    "MontserratRegular": require("./assets/fonts/Montserrat-Regular.ttf"),
+    "MontserratMedium": require("./assets/fonts/Montserrat-Medium.ttf"),
+    "MontserratBold": require("./assets/fonts/Montserrat-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) return null;
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-
-        {/* <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="NewsList" component={NewsListScreen} />
-        <Stack.Screen name="NewsDetail" component={NewsDetailScreen} />
-        <Stack.Screen name="AddNews" component={AddNewsScreen} /> */}
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
