@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.6",
     "react-native-image-picker": "^8.2.1",
+    "react-native-safe-area-context": "~5.6.0",
     "react-native-svg": "^15.13.0",
     "react-native-svg-transformer": "^1.5.1",
     "react-native-web": "^0.20.0"
