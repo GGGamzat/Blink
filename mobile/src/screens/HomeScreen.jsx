@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, ScrollView } from "react-native";
 
-// import profile from '../../assets/profile.png';
 import Profile from '../../assets/icons/profile.svg';
 import MenuIcon from '../../assets/icons/menu-icon.svg';
 import CloseIcon from '../../assets/icons/close-icon.svg';
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -40,7 +39,7 @@ const HomeScreen = () => {
                                     <TouchableOpacity style={styles.auth_btn}>
                                         <Text style={styles.auth_btn__text}>Sign In</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.auth_btn}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Registration')} style={styles.auth_btn}>
                                         <Text style={styles.auth_btn__text}>Sign Up</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -56,7 +55,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
     header: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: 55,

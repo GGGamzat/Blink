@@ -2,9 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
+import RegistrationScreen from './src/screens/RegistrationScreen';
 
 import { useFonts } from "expo-font";
-import AppLoading from 'expo-app-loading';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +23,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Registration" component={RegistrationScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
