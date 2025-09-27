@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Button, Modal, ScrollView } from "react-native";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import CloseIcon from '../../assets/icons/close-icon.svg';
 
 
-const RegistrationScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [token, setToken] = useState(null);
 
     const API_URL = "http://192.168.0.194:8000/api";
     // const API_URL = "http://127.0.0.1:8000/api";
 
-    const handleRegister = async () => {
+    const handleLogin = async () => {
         try {
-            const response = await axios.post(`${API_URL}/register/`, {
-                username,
-                password,
+            const response = await axios.post(`${API_URL}/token/`, {
+                username: username,
+                password: password,
             });
-            setMessage("Регистрация успешна!");
+            setToken(response.data.access);
+            setMessage("Вы успешно вошли!");
         } catch (error) {
             setMessage("Ошибка: " + error.message);
         }
@@ -30,12 +33,13 @@ const RegistrationScreen = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginTop: 60 }}><CloseIcon /></TouchableOpacity>
 
             <View style={styles.container}>
-                <Text style={styles.title}>Registration</Text>
+                <Text style={styles.title}>Authorization</Text>
 
                 <TextInput placeholder="Username" value={username} onChangeText={setUsername} />
                 <TextInput placeholder="Password" secureTextEntry value={password} onChangeText={setPassword} />
-                <Button title="Sign Up" onPress={handleRegister} />
+                <Button title="Sign In" onPress={handleLogin} />
                 <Text style={styles.msg}>{message}</Text>
+                {token && <Text numberOfLines={1}>Токен: {token}</Text>}
             </View>
         </>
     );
@@ -73,4 +77,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default RegistrationScreen;
+export default LoginScreen;

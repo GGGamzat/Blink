@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
                                     </View>
                                 </ScrollView>
                                 <View style={styles.auth_btns}>
-                                    <TouchableOpacity style={styles.auth_btn}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Authorization')} style={styles.auth_btn}>
                                         <Text style={styles.auth_btn__text}>Sign In</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => navigation.navigate('Registration')} style={styles.auth_btn}>
