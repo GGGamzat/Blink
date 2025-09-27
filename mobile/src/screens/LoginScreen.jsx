@@ -10,7 +10,6 @@ const LoginScreen = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-    const [token, setToken] = useState(null);
 
     const API_URL = "http://192.168.0.194:8000/api";
     // const API_URL = "http://127.0.0.1:8000/api";
@@ -18,12 +17,15 @@ const LoginScreen = ({ navigation }) => {
     const handleLogin = async () => {
         try {
             const response = await axios.post(`${API_URL}/token/`, {
-                username: username,
-                password: password,
+                username,
+                password,
             });
-            setToken(response.data.access);
-            setMessage("Вы успешно вошли!");
+            const accessToken = response.data.access;
+            await AsyncStorage.setItem("access", accessToken);
+            setMessage("Вход успешен!");
+            navigation.replace("Profile");
         } catch (error) {
+            console.log(error.response?.data);
             setMessage("Ошибка: " + error.message);
         }
     };
@@ -39,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
                 <TextInput placeholder="Password" secureTextEntry value={password} onChangeText={setPassword} />
                 <Button title="Sign In" onPress={handleLogin} />
                 <Text style={styles.msg}>{message}</Text>
-                {token && <Text numberOfLines={1}>Токен: {token}</Text>}
+                {/* {token && <Text numberOfLines={1}>Токен: {token}</Text>} */}
             </View>
         </>
     );

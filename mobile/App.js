@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
 import RegistrationScreen from './src/screens/RegistrationScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 import { useFonts } from "expo-font";
 
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Registration" component={RegistrationScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Authorization" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -43,6 +43,9 @@ const HomeScreen = ({ navigation }) => {
                                         <Text style={styles.auth_btn__text}>Sign Up</Text>
                                     </TouchableOpacity>
                                 </View>
+                                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.profile_btn}>
+                                    <Text style={styles.auth_btn__text}>Profile</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </Modal>
@@ -111,13 +114,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#e0e0e0',
     },
     auth_btns: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row',
         columnGap: 10,
     },
     auth_btn: {
         padding: 10,
         backgroundColor: '#00B430',
+        borderRadius: 10,
+    },
+    profile_btn: {
+        padding: 10,
+        alignItems: 'center',
+        backgroundColor: '#0045AD',
         borderRadius: 10,
     },
     auth_btn__text: {
