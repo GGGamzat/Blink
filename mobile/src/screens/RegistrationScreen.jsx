@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Button, Modal, ScrollView } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button } from "react-native";
 import axios from "axios";
 
 import CloseIcon from '../../assets/icons/close-icon.svg';
